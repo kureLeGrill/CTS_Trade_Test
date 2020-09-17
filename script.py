@@ -5,10 +5,12 @@ from bs4 import BeautifulSoup
 
 URL = "https://www.cts-tradeit.cz/kariera/"
 
+
 #Make get request to recive html.
 def get_html(url):
     r = requests.get(url)
     return r
+
 
 #Working with html object, and create files.
 def get_professions_names(html):
@@ -21,8 +23,8 @@ def get_professions_names(html):
         links.append({item.get('href')})
     print('Active positions on CTS wep page:')
     print(professions)
-    print('Chcete vypsat podrobnsti do txt? formatu?\n'+'Press Y for write everything to the file')
-    user_answer = input()
+    #print('Chcete vypsat podrobnsti do txt? formatu?\n'+'Press Y for write everything to the file')
+    user_answer = 'y'
     if user_answer == 'y':
         for link in links:
             link_to_page = URL + repr(link).replace('/kariera/','').replace('{','').replace('}','').replace("'","")
@@ -50,6 +52,7 @@ def get_professions_names(html):
             print(profession_inf)
             print(link_to_page)
 
+
 #Calling function to make get request
 def parse():
     html = get_html(URL)
@@ -61,6 +64,7 @@ def parse():
 
 def main():
     parse()
+
 
 if __name__ == "__main__":
     main()
