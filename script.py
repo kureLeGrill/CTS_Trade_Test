@@ -1,18 +1,16 @@
 #####Smetanin Eduard
 #####test task for CTS trade
-
-
 import requests
 from bs4 import BeautifulSoup
 
 URL = "https://www.cts-tradeit.cz/kariera/"
 
-
+#Make get request to recive html.
 def get_html(url):
     r = requests.get(url)
     return r
 
-
+#Working with html object, and create files.
 def get_professions_names(html):
     soup = BeautifulSoup(html, 'html.parser')
     items = soup.find_all('a', class_="card card-lg card-link-bottom")
@@ -52,7 +50,7 @@ def get_professions_names(html):
             print(profession_inf)
             print(link_to_page)
 
-
+#Calling function to make get request
 def parse():
     html = get_html(URL)
     if html.status_code == 200:
